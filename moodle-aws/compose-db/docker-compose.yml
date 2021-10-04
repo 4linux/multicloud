@@ -1,0 +1,40 @@
+version: '3'
+services:
+  phpmyadmin:
+    restart: always
+    image: phpmyadmin
+    networks:
+      - moodle-net
+    ports:
+      - 8080:80
+    environment:
+      PMA_ARBITRARY: "${PMA_ARBITRARY}"
+      
+  dbserver-moodle:
+    restart: always
+    hostname: dbserver-moodle
+    image: docker.io/bitnami/mariadb:10.5
+    networks:
+      - moodle-net
+    ports:
+      - 3306:3306
+    logging:
+      driver: "awslogs"
+      options:
+        awslogs-region: "sa-east-1"
+        awslogs-group: "dbserver-moodle"
+        awslogs-create-group: "true"
+    environment:
+      ALLOW_EMPTY_PASSWORD: "${ALLOW_EMPTY_PASSWORD}"
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
+      MARIADB_PASSWORD: "${MARIADB_PASSWORD}"
+      MARIADB_USER: "${MARIADB_USER}"
+      MARIADB_DATABASE: "${MARIADB_DATABASE}"
+      MARIADB_CHARACTER_SET: "${MARIADB_CHARACTER_SET}"
+      MARIADB_COLLATE: "${MARIADB_COLLATE}"
+    volumes:
+      - "/data:/bitnami/mariadb"
+
+networks:
+  moodle-net:
+    external: true

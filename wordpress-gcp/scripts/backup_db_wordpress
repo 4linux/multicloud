@@ -1,0 +1,4 @@
+#!/bin/sh
+docker container run --rm --net wp-net mysql:5.7 mysqldump -h dbserver-wordpress -u wordpress_user --password=4linux wordpress > /tmp/backup-db-wordpress-$(date '+%d-%m-%Y').sql
+
+sudo su suporte-gcp bash -c 'gsutil cp /tmp/backup-db-wordpress-$(date '+%d-%m-%Y').sql gs://backup/banco/'

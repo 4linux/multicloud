@@ -1,0 +1,3 @@
+#!/bin/sh
+
+tar -cvf /jitsi-backup-confs/bk-confs-$(date '+%d-%m-%Y').tar.gz /jitsi-meet-confs

@@ -1,0 +1,4 @@
+#!/bin/sh
+docker container run --rm --net moodle-net mariadb:latest mysqldump -h dbserver-moodle -u moodle_user --password=4linux moodle > /tmp/moodle-db-backup-$(date '+%d-%m-%Y').sql
+
+sudo su ec2-user -c 'aws s3 cp /tmp/moodle-db-backup-$(date '+%d-%m-%Y').sql s3://backup/banco/'

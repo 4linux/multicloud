@@ -1,0 +1,22 @@
+version: '3'
+services:
+  webserver-wordpress:
+    restart: always
+    image: wordpress:latest
+    networks:
+      - wp-net
+    ports:
+      - 80:80
+    logging:
+      driver: "gcplogs"
+    environment:
+      WORDPRESS_DB_HOST: "${WORDPRESS_DB_HOST}"
+      WORDPRESS_DB_NAME: "${WORDPRESS_DB_NAME}"
+      WORDPRESS_DB_USER: "${WORDPRESS_DB_USER}"
+      WORDPRESS_DB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+    volumes:
+      - "/wpsite:/var/www/html"
+
+networks:
+  wp-net:
+    external: true

@@ -1,0 +1,32 @@
+version: '3'
+services:
+  webserver-moodle:
+    restart: always
+    image: docker.io/bitnami/moodle:3
+    networks:
+      - moodle-net
+    ports:
+     - 80:8080
+     - 443:8443
+    logging:
+      driver: "awslogs"
+      options:
+        awslogs-region: "sa-east-1"
+        awslogs-group: "webserver-moodle"
+        awslogs-create-group: "true"
+    environment:
+      MOODLE_DATABASE_HOST: "${MOODLE_DATABASE_HOST}"
+      MOODLE_DATABASE_PORT_NUMBER: "${MOODLE_DATABASE_PORT_NUMBER}"
+      MOODLE_DATABASE_NAME: "${MOODLE_DATABASE_NAME}"
+      MOODLE_DATABASE_USER: "${MOODLE_DATABASE_USER}"
+      MOODLE_DATABASE_PASSWORD: "${MOODLE_DATABASE_PASSWORD}"
+      MOODLE_USERNAME: "${MOODLE_USERNAME}"
+      MOODLE_PASSWORD: "${MOODLE_PASSWORD}"
+      PHP_MAX_INPUT_VARS: "${PHP_MAX_INPUT_VARS}"
+      ALLOW_EMPTY_PASSWORD: "${ALLOW_EMPTY_PASSWORD}"
+    volumes:
+      - "/moodlesite:/bitnami/moodle"
+   
+networks:
+  moodle-net:
+    external: true

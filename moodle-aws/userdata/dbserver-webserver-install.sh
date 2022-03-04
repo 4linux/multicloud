@@ -16,7 +16,7 @@ docker network create moodle-net
 yum install awslogs -y
 
 REGION=`curl http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'`
-sed -i 's|us-east-1|'"${REGION}"'|g' /etc/awslogs/awscli.conf
+sed -i 's|sa-east-1|'"${REGION}"'|g' /etc/awslogs/awscli.conf
 
 export ID=$(ec2-metadata -i | awk -F" " '{print $2}')
 sed -i 's|{instance_id}|'"${ID}"'|g' /etc/awslogs/awslogs.conf 

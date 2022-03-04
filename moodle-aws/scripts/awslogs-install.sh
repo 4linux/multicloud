@@ -5,7 +5,7 @@
 sudo yum install awslogs -y
 
 REGION=`curl http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'`
-sudo sed -i 's|us-east-1|'"${REGION}"'|g' /etc/awslogs/awscli.conf
+sudo sed -i 's|sa-east-1|'"${REGION}"'|g' /etc/awslogs/awscli.conf
 
 export ID=$(ec2-metadata -i | awk -F" " '{print $2}')
 sudo sed -i 's|{instance_id}|'"${ID}"'|g' /etc/awslogs/awslogs.conf 

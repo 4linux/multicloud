@@ -11,5 +11,5 @@ apt install docker-ce docker-ce-cli containerd.io -y
 docker network create jitsi-net
 
 # Instala o Docker Compose
-curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/sbin/docker-compose
-chmod +x /usr/local/sbin/docker-compose
+curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /bin/docker-compose
+chmod +x /bin/docker-compose

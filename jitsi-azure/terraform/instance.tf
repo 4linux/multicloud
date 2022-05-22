@@ -44,8 +44,8 @@ resource "azurerm_linux_virtual_machine" "jitsi-meet-azure-terraform" {
     source_image_reference {
         publisher	= "canonical"
         offer     	= "0001-com-ubuntu-server-focal"
-        sku       	= "20_04-lts"
-        version   	= "latest"
+        sku       	= "20_04-lts-gen2"
+        version   	= "20.04.202205100"
     }
 
     computer_name  	= var.name_vm
@@ -57,6 +57,6 @@ resource "azurerm_linux_virtual_machine" "jitsi-meet-azure-terraform" {
         public_key     = file("~/.ssh/id_rsa.pub")
     }
 
-    custom_data	       = filebase64("files/jitsi-jvb-azure-install.sh")
+    custom_data	       = filebase64("files/jitsi-meet-azure-install.sh")
 
 }

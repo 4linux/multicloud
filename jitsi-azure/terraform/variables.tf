@@ -20,7 +20,7 @@ variable "image_id" {
 
 variable "subnet_id" {
   description = "Define o nome da subrede"
-  default = "/subscriptions/77417ffb-b828-4a6b-b4a9-a18d13ac5a97/resourceGroups/multicloud/providers/Microsoft.Network/virtualNetworks/jitsi-vmnet/subnets/default"
+  default = "/subscriptions/77417ffb-b828-4a6b-b4a9-a18d13ac5a97/resourceGroups/multicloud/providers/Microsoft.Network/virtualNetworks/jitsi-vmnet/subnets/padrão"
 }
 
 variable "name_ip" {

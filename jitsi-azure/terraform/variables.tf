@@ -1,6 +1,6 @@
 variable "location" {
   description = "Define em qual regiao a instancia sera executada"
-  default = "southeastasia"
+  default = "eastus"
 }
 
 variable "resource_group_name" {
@@ -15,12 +15,12 @@ variable "name_vm" {
 
 variable "image_id" {
   description = "Define o id da imagem modelo"
-  default = "/subscriptions/0009f13e-68f4-4cae-8cb2-9e26239157a1/resourceGroups/multicloud/providers/Microsoft.Compute/images/imagem-modelo-jitsi-meet"
+  default = "/subscriptions/77417ffb-b828-4a6b-b4a9-a18d13ac5a97/resourceGroups/multicloud/providers/Microsoft.Compute/images/imagem-modelo-jitsi-meet"
 }
 
 variable "subnet_id" {
   description = "Define o nome da subrede"
-  default = "/subscriptions/0009f13e-68f4-4cae-8cb2-9e26239157a1/resourceGroups/multicloud/providers/Microsoft.Network/virtualNetworks/jitsi-vmnet/subnets/default"
+  default = "/subscriptions/77417ffb-b828-4a6b-b4a9-a18d13ac5a97/resourceGroups/multicloud/providers/Microsoft.Network/virtualNetworks/jitsi-vmnet/subnets/default"
 }
 
 variable "name_ip" {
@@ -40,12 +40,12 @@ variable "name_ip_configuration" {
 
 variable "network_security_group_id_meet" {
   description = "Define o nome do grupo de seguranca jitsi-meet"
-  default = "/subscriptions/0009f13e-68f4-4cae-8cb2-9e26239157a1/resourceGroups/multicloud/providers/Microsoft.Network/networkSecurityGroups/jitsi-meet"
+  default = "/subscriptions/77417ffb-b828-4a6b-b4a9-a18d13ac5a97/resourceGroups/multicloud/providers/Microsoft.Network/networkSecurityGroups/jitsi-meet"
 }
 
 variable "size" {
   description = "Define o tipo de instancia"
-  default = "Standard_DC1ds_v3"
+  default = "Standard_B1s"
 }
 
 variable "user" {

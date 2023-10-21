@@ -2,17 +2,13 @@
 
 # Configura ambiente de Logs
 
-sudo yum install awslogs -y
+### Instala os pacotes amazon-cloudwatch-agent e rsyslog
+yum install amazon-cloudwatch-agent rsyslog -y
 
-REGION=`curl http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'`
-sudo sed -i 's|sa-east-1|'"${REGION}"'|g' /etc/awslogs/awscli.conf
+### Configura o arquivo amazon-cloudwatch-agent.json
+wget https://raw.githubusercontent.com/4linux/multicloud/main/moodle-aws/scripts/amazon-cloudwatch-agent.json -O /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
 
-export ID=$(ec2-metadata -i | awk -F" " '{print $2}')
-sudo sed -i 's|{instance_id}|'"${ID}"'|g' /etc/awslogs/awslogs.conf 
-
-export LOG1='log_group_name = /var/log/messages'
-export LOG2='log_group_name = moodle'
-sudo sed -i 's|'"${LOG1}"'|'"${LOG2}"'|g' /etc/awslogs/awslogs.conf
-
-sudo systemctl enable awslogsd
-sudo systemctl start awslogsd
+### Configura os serviços amazon-cloudwatch-agent e rsyslog
+systemctl start amazon-cloudwatch-agent rsyslog
+systemctl enable amazon-cloudwatch-agent rsyslog

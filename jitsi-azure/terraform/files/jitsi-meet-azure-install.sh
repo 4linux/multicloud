@@ -8,5 +8,5 @@ sed -i '/^[[:blank:]]*syslog/d;s/#.*//' /home/azureuser/multicloud/jitsi-azure/c
 sed -i '/^[[:blank:]]*tag/d;s/#.*//' /home/azureuser/multicloud/jitsi-azure/compose-meet-jvb/docker-compose.yml
 
 # Atualiza o container jitsi-meet
-cd /home/azureuser/multicloud/jitsi-azure/compose-meet-jvb/
+cd /home/azureuser/multicloud/jitsi-azure/compose-jvb/
 docker-compose up -d

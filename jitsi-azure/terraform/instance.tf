@@ -22,9 +22,9 @@ resource "azurerm_network_interface" "jitsi-nic" {
 }
 
 ### Conecta o grupo de seguranca jitsi-meet a interface de rede
-resource "azurerm_network_interface_security_group_association" "jitsi-meet" {
+resource "azurerm_network_interface_security_group_association" "jitsi-jvb" {
     network_interface_id      = azurerm_network_interface.jitsi-nic.id
-    network_security_group_id = var.network_security_group_id_meet
+    network_security_group_id = var.network_security_group_id_jvb
 }
 
 ### Cria a maquina virtual
@@ -43,9 +43,9 @@ resource "azurerm_linux_virtual_machine" "jitsi-meet-azure-terraform" {
 
     source_image_reference {
         publisher	= "canonical"
-        offer     	= "0001-com-ubuntu-server-focal"
-        sku       	= "20_04-lts-gen2"
-        version   	= "20.04.202205100"
+        offer     	= "0001-com-ubuntu-server-jammy"
+        sku       	= "22_04-lts-gen2"
+        version   	= "latest"
     }
 
     computer_name  	= var.name_vm

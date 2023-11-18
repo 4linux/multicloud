@@ -2,8 +2,15 @@
 
 # Instala o Docker e Git
 yum install docker git -y
+
+# Habilita o docker na inicialização
 systemctl enable docker
+
+# Inicia o serviço do docker
 systemctl start docker
+
+# Adiciona o usuário logado ao grupo do docker
+sudo usermod -aG docker $(echo $USER)
 
 # Instala o Docker Compose
 curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
